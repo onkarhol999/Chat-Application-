@@ -19,24 +19,34 @@ public class roomController {
     @PostMapping("/createRoomById")
     public ResponseEntity<?> createRoomById(@RequestBody String roomId) {
         // If room already exists
-        if (service.checkRoomId(roomId)) {
+        boolean isPresent = service.checkRoomId(roomId);
+        if (isPresent) {
             return ResponseEntity.badRequest().body("Room Already exists.");
+        }else{
+            return service.createRoom(roomId);
         }
-        return service.createRoom(roomId);
     }
 
     //join room for that get room API
-
     @GetMapping("/getRoomById/{roomId}")
-    public ResponseEntity<?> getRoomById(@PathVariable String roomId){
+    public ResponseEntity<?> getRoomById(@PathVariable("roomId") String roomId){
         return service.getRoomById(roomId);
     }
 
-//    Get Messages
+
+    //    Get Messages
     @GetMapping("/message/{roomId}")
     public ResponseEntity<List<Message>> getMessages(@PathVariable String roomId){
         return service.getMessages(roomId);
     }
+
+// Get all rooms id
+     @GetMapping("/getAllRooms")
+    public ResponseEntity<?> getAllRooms(){
+        return service.getAllRooms();
+     }
+
+
 
 
 }

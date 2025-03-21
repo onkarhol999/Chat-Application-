@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RoomRepository extends MongoRepository<Room, String> {
-//    Get room using room id
-    Room findRoomById(String roomId);
+    Room findByRoomId(String roomId); // Corrected query method
 }
+

@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class roomService {
@@ -17,17 +18,27 @@ public class roomService {
     @Autowired
     private RoomRepository repo;
 
+//    Get all room ID
+    public ResponseEntity<?> getAllRooms() {
+        List<Room> rooms = repo.findAll(); // Assuming Room is your entity
+        List<String> roomIds = rooms.stream()
+                .map(Room::getRoomId) // Extracting roomId
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(roomIds);
+    }
+
     public boolean checkRoomId(String roomId) {
         if (roomId == null) {
             return false;
         }
-        Room room = repo.findRoomById(roomId);
-        if (room == null) {
+        List<Room> rooms = repo.findAll(); // Assuming Room is your entity
+        List<String> roomIds = rooms.stream()
+                .map(Room::getRoomId) // Extracting roomId
+                .collect(Collectors.toList());
+        if(roomIds.contains(roomId)){
+            return true;
+        }else{
             return false;
-        } else {
-            String id = room.getRoomId();
-            // Use .equals() for string comparison with null safety
-            return roomId.equals(id);
         }
     }
 
@@ -40,19 +51,25 @@ public class roomService {
 
 
     public ResponseEntity<?> getRoomById(String roomId) {
-        Room room = repo.findRoomById(roomId);
-        if(room==null){
+        System.out.println("Fetching room with ID: " + roomId);
+        Room room = repo.findByRoomId(roomId);
+        if (room == null) {
             return ResponseEntity.badRequest().body("Room Not Found..");
         }
         return ResponseEntity.ok(room);
     }
 
+
+
     public ResponseEntity<List<Message>> getMessages(String roomId) {
-        Room room = repo.findRoomById(roomId);
+        Room room = repo.findByRoomId(roomId);
         if(room==null){
             return ResponseEntity.badRequest().build();
         }
         List<Message> messages = room.getMessage();
         return ResponseEntity.ok(messages);
     }
+
+
+
 }
