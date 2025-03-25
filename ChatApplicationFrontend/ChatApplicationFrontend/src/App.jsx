@@ -1,3 +1,6 @@
+// import toast from "react-hot-toast"
+
+import JoinCreateChat from "./components/JoinCreateChat"
 
 
 function App() {
@@ -5,7 +8,7 @@ function App() {
   return (
     <>
       <div>
-        Hello
+        <JoinCreateChat/>
       </div>
     </>
   )

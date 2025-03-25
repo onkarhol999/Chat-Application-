@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDateTime;
 
 @RestController
-@CrossOrigin
+@CrossOrigin("http://localhost:5173")
 public class chatController {
 
       @Autowired
@@ -33,7 +33,7 @@ public class chatController {
 
         Message message = new Message();
         message.setContent(request.getContent());
-        message.setSender(request.getSennder());
+        message.setSender(request.getSender());
         message.setTimeStamp(LocalDateTime.now());
 
         if(room != null){

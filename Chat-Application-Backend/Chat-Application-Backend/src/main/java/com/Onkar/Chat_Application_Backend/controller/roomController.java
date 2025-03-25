@@ -8,25 +8,34 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/rooms")
-@CrossOrigin
+@CrossOrigin("http://localhost:5173")
 public class roomController {
     @Autowired
     private roomService service;
 
     //Create Room
+
+
     @PostMapping("/createRoomById")
-    public ResponseEntity<?> createRoomById(@RequestBody String roomId) {
-        // If room already exists
+    public ResponseEntity<?> createRoomById(@RequestBody Map<String, String> requestBody) {
+        String roomId = requestBody.get("roomId"); // Extract actual value
+
+        if (roomId == null || roomId.trim().isEmpty()) {
+            return ResponseEntity.badRequest().body("Invalid Room ID.");
+        }
+
         boolean isPresent = service.checkRoomId(roomId);
         if (isPresent) {
-            return ResponseEntity.badRequest().body("Room Already exists.");
-        }else{
+            return ResponseEntity.badRequest().body("Room Already Exists.");
+        } else {
             return service.createRoom(roomId);
         }
     }
+
 
     //join room for that get room API
     @GetMapping("/getRoomById/{roomId}")
@@ -46,8 +55,4 @@ public class roomController {
     public ResponseEntity<?> getAllRooms(){
         return service.getAllRooms();
      }
-
-
-
-
 }

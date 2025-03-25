@@ -1,0 +1,13 @@
+.chat-bubble {
+    word-wrap: break-word;  /* Wraps long words */
+    overflow-wrap: break-word; /* Ensures breaking */
+    word-break: break-word; /* Forces unbreakable words to break */
+    max-width: 75%; /* Limits the width */
+  }
+  
+  .chat-text {
+    white-space: pre-wrap; /* Preserves spaces and ensures line wrapping */
+    word-wrap: break-word; /* Ensures proper breaking */
+    overflow-wrap: break-word; /* Fixes overflow issues */
+  }
+  
