@@ -1,5 +1,6 @@
 package com.Onkar.Chat_Application_Backend.controller;
 
+import com.Onkar.Chat_Application_Backend.config.AppConstants;
 import com.Onkar.Chat_Application_Backend.entities.Message;
 import com.Onkar.Chat_Application_Backend.service.roomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/rooms")
-@CrossOrigin("http://localhost:5173")
+@CrossOrigin(AppConstants.FRONT_END_URL)
 public class roomController {
     @Autowired
     private roomService service;

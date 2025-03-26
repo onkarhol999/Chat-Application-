@@ -1,5 +1,6 @@
 package com.Onkar.Chat_Application_Backend.controller;
 
+import com.Onkar.Chat_Application_Backend.config.AppConstants;
 import com.Onkar.Chat_Application_Backend.entities.Message;
 import com.Onkar.Chat_Application_Backend.entities.Room;
 import com.Onkar.Chat_Application_Backend.payload.MessageRequest;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDateTime;
 
 @RestController
-@CrossOrigin("http://localhost:5173")
+@CrossOrigin(AppConstants.FRONT_END_URL)
 public class chatController {
 
       @Autowired

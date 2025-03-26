@@ -8,10 +8,6 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
 public class Message {
        private String sender;
        private String content;
