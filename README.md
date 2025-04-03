@@ -44,7 +44,7 @@ mvn spring-boot:run
 ```sh
 cd frontend
 npm install
-npm start
+npm run dev
 ```
 - App runs at `http://localhost:3000`
 
