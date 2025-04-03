@@ -1,6 +1,9 @@
 # Chat Application
 
 A real-time chat application built with **React.js** (Frontend) and **Spring Boot** (Backend) using **WebSockets** for seamless communication.
+## 🌐 Live Demo  
+[Click here to view the project](https://realtimechatapplication-orpin.vercel.app/)
+
 
 ## 🚀 Features
 - Real-time messaging with WebSockets
